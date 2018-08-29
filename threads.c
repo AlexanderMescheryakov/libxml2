@@ -653,7 +653,7 @@ xmlGlobalStateCleanup(void *data)
 xmlGlobalStatePtr
 xmlGetGlobalState(void)
 {
-#ifdef HAVE_PTHREAD_H
+#if defined(HAVE_PTHREAD_H) && defined(LIBXML_THREAD_ENABLED)
     xmlGlobalState *globalval;
 
     if (libxml_is_threaded == 0)
@@ -792,7 +792,7 @@ xmlGetThreadId(void)
 int
 xmlIsMainThread(void)
 {
-#ifdef HAVE_PTHREAD_H
+#if defined(HAVE_PTHREAD_H) && defined(LIBXML_THREAD_ENABLED)
     if (libxml_is_threaded == -1)
         xmlInitThreads();
     if (libxml_is_threaded == 0)
